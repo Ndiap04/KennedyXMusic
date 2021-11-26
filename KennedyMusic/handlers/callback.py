@@ -140,7 +140,7 @@ async def cbbasic(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbdangdut"))
 async def cbbasic(_, query: CallbackQuery):
     await query.edit_message_text(
-        f""Hasil 1-10 dari 10**
+        f"""**Hasil 1-5 dari 5**
 
 1) **Judul** : Rembulan Malam
 Link : `(https://www.youtube.com/watch?v=oRbEEXN2xOk)`
