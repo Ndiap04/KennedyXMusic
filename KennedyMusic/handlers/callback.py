@@ -92,7 +92,7 @@ async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 @Client.on_callback_query(filters.regex("cbgroups"))
-async def cbbasic(_, query: CallbackQuery):
+async def cbgroups(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""💁‍♂ **Kemungkinan Saya Belum Bisa Ditambahkan Kegrub**!
 """,
@@ -102,7 +102,7 @@ async def cbbasic(_, query: CallbackQuery):
     )
 
 @Client.on_callback_query(filters.regex("cbsearch"))
-async def cbbasic(_, query: CallbackQuery):
+async def cbsearch(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
 
@@ -117,7 +117,7 @@ async def cbbasic(_, query: CallbackQuery):
     )
 
 @Client.on_callback_query(filters.regex("cbfavorit"))
-async def cbbasic(_, query: CallbackQuery):
+async def cbfavorit(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🎉 **Silakan Pilih Favorit Kamu** ! Saya Akan Kasih Link Youtube Nya !
 """,
@@ -138,7 +138,7 @@ async def cbbasic(_, query: CallbackQuery):
     )
 
 @Client.on_callback_query(filters.regex("cbdangdut"))
-async def cbbasic(_, query: CallbackQuery):
+async def cbdangdut(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🎉 **Rekomendasi Untuk Kamu!**
 
