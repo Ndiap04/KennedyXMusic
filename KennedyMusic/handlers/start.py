@@ -58,41 +58,34 @@ async def start_(client: Client, message: Message):
 💭 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
 """,
         reply_markup=InlineKeyboardMarkup(
-            [
-               [
-                InlineKeyboardButton(
-                    "Perintah", callback_data="cbbasic",
-                    )
-                ],
-            ]
-        ),
-        disable_web_page_preview=True,
-    )
-
-@Client.on_message(command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
-async def start(client: Client, message: Message):
-    start = time()
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
-    delta_ping = time() - start
-    await message.reply_text(
-        f"""<b>👋 **Hello {message.from_user.mention()}** ❗</b>
-
-✅ **I'm active and ready to play music!
-• Start time: `{START_TIME_ISO}`
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
+                        [ 
                 [
                     InlineKeyboardButton(
-                        "Group support", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "➕ Tambahkan Saya Kegrub ➕", callback_data="cbgroups")
+                ],[
+                    InlineKeyboardButton(
+                        "🔍 Searching​​", callback_data="cbsearch"
+                    ),
+                    InlineKeyboardButton(
+                        "❤️ Untuk Kamu", callback_data="cbfavorit")
+                ],[
+                    InlineKeyboardButton(
+                        "🎶 Pilih Resolusi", callback_data="cbresol"
+                    ),
+                    InlineKeyboardButton(
+                        "🎉 Trending", callback_data="cbtren")
+                ],[
+                    InlineKeyboardButton(
+                        "♻ Update", callback_data="cbupdate")
+                ],[
+                    InlineKeyboardButton(
+                        "❔ Panduan Bot", callback_data="cbpanduan"
                     )
                 ]
             ]
-        )
+        ),
+     disable_web_page_preview=True
     )
-
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def help(client: Client, message: Message):
