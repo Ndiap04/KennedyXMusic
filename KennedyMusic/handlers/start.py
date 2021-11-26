@@ -54,41 +54,20 @@ async def _human_time_duration(seconds):
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
     await message.reply_text(
-        f"""<b>✨ Welcome {message.from_user.mention()}!</b>
-
-**💭 [{BOT_NAME}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
-
-💡 Find out all the **Bot's commands** and how they work by clicking on the **» ⚙️ Commands** button!""",
+        f"""✨ **Welcome {message.from_user.mention()} !**\n
+💭 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
+""",
         reply_markup=InlineKeyboardMarkup(
-                        [ 
-                [
-                    InlineKeyboardButton(
-                        "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
-                ],[
-                    InlineKeyboardButton(
-                        "⚙️ Command​​", callback_data="cbhelp"
-                    ),
-                    InlineKeyboardButton(
-                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
-                ],[
-                    InlineKeyboardButton(
-                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
-                    ),
-                    InlineKeyboardButton(
-                        "📮 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
-                ],[
-                    InlineKeyboardButton(
-                        "🛠️ Source Code 🛠️", url=f"{UPSTREAM_REPO}")
-                ],[
-                    InlineKeyboardButton(
-                        "❔ About me​​", callback_data="cbabout"
+            [
+               [
+                InlineKeyboardButton(
+                    "Perintah", callback_data="cbbasic",
                     )
-                ]
+                ],
             ]
         ),
-     disable_web_page_preview=True
+        disable_web_page_preview=True,
     )
-
 
 @Client.on_message(command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def start(client: Client, message: Message):
@@ -135,46 +114,3 @@ async def help(client: Client, message: Message):
     )
 
 
-@Client.on_message(filters.command(["ping", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
-@authorized_users_only
-async def ping_pong(client: Client, message: Message):
-    start = time()
-    m_reply = await message.reply_text("`Pinging...`")
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
-    delta_ping = time() - start
-    await m_reply.edit_text(
-        "**Pong !!**\n" 
-        f"**Time taken:** `{delta_ping * 1000:.3f} ms`\n"
-        f"**Service uptime:** `{uptime}`"
-    )
-
-
-@Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
-@sudo_users_only
-async def get_uptime(client: Client, message: Message):
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
-    await message.reply_text(
-        f"🤖 {BOT_NAME} status:\n"
-        f"• **uptime:** `{uptime}`\n"
-        f"• **start time:** `{START_TIME_ISO}`"
-    )
-
-
-@Client.on_message(command(["donate", f"donate@{BOT_USERNAME}"]) & ~filters.edited)
-async def donate(client: Client, message: Message):
-    await message.reply_text(
-        f"__Hi **{message.from_user.mention()}**, it's great if you want to support this bot 😇. Tap the button below to continue__",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="Continue 🔰", url=f"https://t.me/{OWNER_NAME}"
-                    )
-                ]
-            ]
-        )
-    )
