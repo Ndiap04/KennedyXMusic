@@ -54,275 +54,35 @@ async def _human_time_duration(seconds):
 @Client.on_callback_query(filters.regex("cbstart"))
 async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""<b>✨ Welcome [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})!</b>
-
-**💭 [{bn}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
-
-💡 Find out all the **Bot's commands** and how they work by clicking on the **» ⚙️ Commands** button!""",
-        reply_markup=InlineKeyboardMarkup(
-            [ 
-                [
-                    InlineKeyboardButton(
-                        "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
-                ],[
-                    InlineKeyboardButton(
-                        "⚙️ Command​​", callback_data="cbhelp"
-                    ),
-                    InlineKeyboardButton(
-                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
-                ],[
-                    InlineKeyboardButton(
-                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
-                    ),
-                    InlineKeyboardButton(
-                        "📮 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
-                ],[
-                    InlineKeyboardButton(
-                        "🛠️ Source Code 🛠️", url=f"{UPSTREAM_REPO}")
-                ],[
-                    InlineKeyboardButton(
-                        "❔ About me​​", callback_data="cbabout"
-                    )
-                ]
-            ]
-        ),
-     disable_web_page_preview=True
-    )
-
-
-@Client.on_callback_query(filters.regex("cbabout"))
-async def cbabout(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""<b>❓ **About  {bn}**</b> 
-
-➠ **A powerfull bot for playing music for groups!
-
-➠ Working with pyrogram
-
-➠ Using Python 3.9.7
-
-➠ Can play and download music or videos from YouTube
-
-__{bn} licensed under the GNU General Public License v.3.0__
-
-• Updates channel @{UPDATES_CHANNEL}
-• Group Support @{GROUP_SUPPORT}
-• Assistant @{ASSISTANT_NAME}
-• Here is my [Owner](https://t.me/{OWNER_NAME})**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🔙 Back​", callback_data="cbstart"
-                    )
-                ]
-            ]
-        ),
-     disable_web_page_preview=True
-    )
-
-
-@Client.on_callback_query(filters.regex("cbhelp"))
-async def cbhelp(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""<b>🎛️ Here is the help menu !</b>
-
-**In this menu you can open several available command menus, in each command menu there is also a brief explanation of each command**
-
+        f"""✨ **Welcome [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**\n
+💭 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(
-                        "🛠️ Basic Command", callback_data="cbbasic"),
-                    InlineKeyboardButton(
-                        "👮 Admin Command", callback_data="cbadmin"
+               [
+                InlineKeyboardButton(
+                    "Perintah", callback_data="close",
                     )
                 ],
-                [
-                    InlineKeyboardButton(
-                        "👷 Sudo Command", callback_data="cbsudo"),
-                    InlineKeyboardButton(
-                        "🤴 Ownertools", callback_data="cbowner"
-                    ) 
-                ],
-                [
-                    InlineKeyboardButton(
-                        "🔙 Back", callback_data="cbstart"
-                    )
-                ]
             ]
-        )
+        ),
+        disable_web_page_preview=True,
     )
-
 
 @Client.on_callback_query(filters.regex("cbbasic"))
-async def cbbasic(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""<b>🛠️ basic commands for bots
-
-[GROUP SETTINGS]
- • `/play (title / reply to audio)` - play music via youtube
- • `/ytp (title)` - play music live
- • `/playlist` - view queue list
- • `/song (title)` - download music from youtube
- • `/search (title)` - search for music from youtube in detail
- • `/video (title)` - download music from youtube in detail
-[ MORE ]
- • `/alive` - check alive bot
- • `/start` - starting bot
-
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🔙 Back", callback_data="cbhelp"
-                    )
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_callback_query(filters.regex("cbadmin"))
-async def cbadmin(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""<b>👮 command for group admin only!
-
- • `/player` - view playback status
- • `/pause` - pauses playing music
- • `/resume` - resume paused music
- • `/skip` - skip to next song
- • `/end` - mute the music
- • `/userbotjoin` - invite assistant to join the group
- • `/musicp (on / off)` - turn on / off the music player in your group
-
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🔙 Back", callback_data="cbhelp"
-                    )
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_callback_query(filters.regex("cbowner"))
-async def cbowner(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""**🤴 here is the owner commands only**
-
- • `/stats` - show the bot statistic
- • `/broadcast` (reply to message) - send a broadcast message from bot
- • `/block` (user id - duration - reason) - block user for using your bot
- • `/unblock` (user id - reason) - unblock user you blocked for using your bot
- • `/blocklist` - show you the list of user was blocked for using your bot
-
-📝 note: all commands owned by this bot can be executed by the owner of the bot without any exceptions.
-
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbhelp")]]
-        ),
-    )
-
-
-@Client.on_callback_query(filters.regex("cbsudo"))
-async def cbsudo(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""<b>👷 **command for sudo**
-
- • `/userbotleaveall - remove assistant from all groups
- • `/gcast` - send global messages via assistant
- • `/rmd` - delete downloaded files
- • `/uptime` - for see the uptime and start time bot launched
- • `/sysinfo` - to see system bot info
- • `/eval` (cmd) and `/sh` (cmd) - running evaluator or shell
-if using heroku
- • `/usage` - for check you dyno heroku
- • `/update` - for build update your bot
- • `/restart` - restart/reboot your bot
- • `/setvar` (var) (value) - to update your value variable on heroku
- • `/delvar` (var) - to delete your var on heroku.
-
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🔙 Back", callback_data="cbhelp"
-                    )
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_callback_query(filters.regex("cbguide"))
-async def cbguide(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""**HOW TO USE THIS BOT :**
-
-1.) First, add to your group.
-2.) Then make admin with all permissions except anonymous admin.
-3.) Add @{ASSISTANT_NAME} to your group or type `/userbotjoin` to invite assistant.
-4.) Turn on voice chat first before playing music.
-
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🗑 Close", callback_data="close"
-                    )
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_callback_query(filters.regex("close"))
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 
-@Client.on_callback_query(filters.regex("cbhplay"))
-async def cbhplay(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""💭 How to play music on {bn}
-
-• `/play (query or reply audio)` - for playing music via youtube
-• `/ytp (query)` - play music directly from youtube
-
-🔔 Updates channel [Click here](https://t.me/{UPDATES_CHANNEL})""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                   InlineKeyboardButton("🔙 Back", callback_data="cbplayback"),
-                ],
-            ]
-        ),
-    )
-
-
 @Client.on_callback_query(filters.regex("cbplayback"))
-async def cbplayback(_, query: CallbackQuery):
+async def cbbasic(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**❗ couldn't find song you requested**
-
-» **please provide the correct song name or include the artist's name as well**""", 
+        f"""🏮 **Perintah**
+Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!
+/song (nama lagu) - cari berdasarkan judul lagu
+/artis (nama artis) - cari berdasarkan nama artis
+""",
         reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                   InlineKeyboardButton("Command", callback_data="cbhplay"),
-                ],
-                [
-                   InlineKeyboardButton("🗑️ Close", callback_data="closed"),
-                ],
-            ]
+            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbstart")]]
         ),
     )
