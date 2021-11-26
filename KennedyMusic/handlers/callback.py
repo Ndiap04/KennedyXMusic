@@ -69,12 +69,12 @@ async def cbstart(_, query: CallbackQuery):
         disable_web_page_preview=True,
     )
 
-@Client.on_callback_query(filters.regex("cbbasic"))
+@Client.on_callback_query(filters.regex("close"))
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 
-@Client.on_callback_query(filters.regex("cbplayback"))
+@Client.on_callback_query(filters.regex("cbbasic"))
 async def cbbasic(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 **Perintah**
