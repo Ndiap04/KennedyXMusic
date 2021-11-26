@@ -35,7 +35,7 @@ async def ytsearch(_, message: Message):
             await message.reply_text("💁 Saya Belum Paham Apa maksudmu!\n")
             return
         query = message.text.split(None, 1)[1]
-        m = await message.reply_text("🔎 **Saya Sedang Mencari Artis Yang Kamu Minta**")
+        m = await message.reply_text("🔎 **Saya Sedang Mencari Artis Yang Kamu Minta!**")
         results = YoutubeSearch(query, max_results=5).to_dict()
         i = 0
         text = ""
