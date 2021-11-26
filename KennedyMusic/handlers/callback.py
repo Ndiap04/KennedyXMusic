@@ -144,31 +144,22 @@ async def cbbasic(_, query: CallbackQuery):
 
 1) **Judul** : Rembulan Malam
 Link : `(https://www.youtube.com/watch?v=oRbEEXN2xOk)`
-
 2) **Judul** : Top Topan
 Link : (https://www.youtube.com/watch?v=Yp0aCRvxQ6U)
-
 3) **Judul** : Lungamu Tinggal Kenangan
 Link : (https://youtu.be/OcLHeZow7x4)
-
 4) **Judul** : Pingal
 Link : (https://youtu.be/vPRyV1iMn9Y)
-
 5) **Judul** : Sewu Kutho
 Link : (https://youtu.be/YNnLBN--G-0)
-
 6) **Judul** : Roso Atiku
 Link : (https://youtu.be/NY5tCLt_QEc)
-
 7) **Judul** : Angel
 Link : (https://youtu.be/k-6gCAyDPaM)
-
 8) **Judul** : Menung Tanpo Udan
 Link : (https://youtu.be/ppjO2aYR4kQ)
-
 9) **Judul** : Nutupi Laraku
 Link : (https://youtu.be/0x2oKBhIGh8)
-
 10) **Judul** : Beta Janji
 Link : (https://youtu.be/EI-8lLlhaOo)
 """,
