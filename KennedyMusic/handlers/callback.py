@@ -58,31 +58,121 @@ async def cbstart(_, query: CallbackQuery):
 💭 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
 """,
         reply_markup=InlineKeyboardMarkup(
-            [
-               [
-                InlineKeyboardButton(
-                    "Perintah", callback_data="close",
+                        [ 
+                [
+                    InlineKeyboardButton(
+                        "➕ Tambahkan Saya Kegrub ➕", callback_data="cbgroups")
+                ],[
+                    InlineKeyboardButton(
+                        "🔍 Searching​​", callback_data="cbsearch"
+                    ),
+                    InlineKeyboardButton(
+                        "❤️ Untuk Kamu", callback_data="cbfavorit")
+                ],[
+                    InlineKeyboardButton(
+                        "🎶 Pilih Resolusi", callback_data="cbresol"
+                    ),
+                    InlineKeyboardButton(
+                        "🎉 Trending", callback_data="cbtren")
+                ],[
+                    InlineKeyboardButton(
+                        "♻ Update", callback_data="cbupdate")
+                ],[
+                    InlineKeyboardButton(
+                        "❔ Panduan Bot", callback_data="cbpanduan"
                     )
-                ],
+                ]
             ]
         ),
-        disable_web_page_preview=True,
+     disable_web_page_preview=True
     )
 
 @Client.on_callback_query(filters.regex("close"))
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
-
-@Client.on_callback_query(filters.regex("cbbasic"))
+@Client.on_callback_query(filters.regex("cbgroups"))
 async def cbbasic(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""🏮 **Perintah**
-Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!
-/song (nama lagu) - cari berdasarkan judul lagu
-/artis (nama artis) - cari berdasarkan nama artis
+        f"""💁‍♂ **Kemungkinan Saya Belum Bisa Ditambahkan Kegrub**!
 """,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbstart")]]
+            [[InlineKeyboardButton("❌", callback_data="close")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbsearch"))
+async def cbbasic(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""🏮 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
+
+/song (nama lagu) - cari berdasarkan judul lagu ✓
+/artis (nama artis) - cari berdasarkan nama artis ✓
+/video (nama lagu) - secara acak dari youtube penyanyi ✓
+
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbfavorit"))
+async def cbbasic(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""🎉 **Silakan Pilih Favorit Kamu** ! Saya Akan Kasih Link Youtube Nya !
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("1⃣ Dangdut", callback_data="cbdangdut"),
+                    InlineKeyboardButton("2⃣ Reggae Indonesia", callback_data="cbadvanced"),
+                ],
+                [
+                    InlineKeyboardButton("3⃣ Remix DJ local", callback_data="cbadmin"),
+                    InlineKeyboardButton("4⃣ Pop", callback_data="cbsudo"),
+                ],
+                [InlineKeyboardButton("5⃣ Islami", callback_data="cbowner")],
+                [InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")],
+            ]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbdangdut"))
+async def cbbasic(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f""Hasil 1-10 dari 10**
+
+1) **Judul** : Rembulan Malam
+Link : `(https://www.youtube.com/watch?v=oRbEEXN2xOk)`
+
+2) **Judul** : Top Topan
+Link : (https://www.youtube.com/watch?v=Yp0aCRvxQ6U)
+
+3) **Judul** : Lungamu Tinggal Kenangan
+Link : (https://youtu.be/OcLHeZow7x4)
+
+4) **Judul** : Pingal
+Link : (https://youtu.be/vPRyV1iMn9Y)
+
+5) **Judul** : Sewu Kutho
+Link : (https://youtu.be/YNnLBN--G-0)
+
+6) **Judul** : Roso Atiku
+Link : (https://youtu.be/NY5tCLt_QEc)
+
+7) **Judul** : Angel
+Link : (https://youtu.be/k-6gCAyDPaM)
+
+8) **Judul** : Menung Tanpo Udan
+Link : (https://youtu.be/ppjO2aYR4kQ)
+
+9) **Judul** : Nutupi Laraku
+Link : (https://youtu.be/0x2oKBhIGh8)
+
+10) **Judul** : Beta Janji
+Link : (https://youtu.be/EI-8lLlhaOo)
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")]]
         ),
     )
