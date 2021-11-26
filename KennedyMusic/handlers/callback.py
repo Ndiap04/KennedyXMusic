@@ -129,7 +129,7 @@ async def cbfavorit(_, query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton("3⃣ Remix DJ local", callback_data="cbadmin"),
-                    InlineKeyboardButton("4⃣ Pop", callback_data="cbsudo"),
+                    InlineKeyboardButton("4⃣ Pop", callback_data="cbpop"),
                 ],
                 [InlineKeyboardButton("5⃣ Islami", callback_data="cbowner")],
                 [InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")],
