@@ -50,7 +50,7 @@ def song(client, message):
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     query = "".join(" " + str(i) for i in message.command[1:])
     print(query)
-    m = message.reply("🔎 **Searching**")
+    m = message.reply("🔎 **Saya Sedang Mencari Lagu Yang Kamu Minta!**")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -65,21 +65,19 @@ def song(client, message):
         results[0]["url_suffix"]
         results[0]["views"]
     except Exception as e:
-        m.edit("❌ **Song Not found.**\n\n**Try Entering a clearer song title.**")
+        m.edit("🤷‍♂ **Saya Tidak Menemukan Apapun Itu!**")
         print(str(e))
         return
-    m.edit("📥 **Downloading**")
+    m.edit("💁‍♀ **Wahh,Sabar Ya Saya Sedang Mengunduhnya!**")
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
         rep = f"""
-**🏷 Title :** [{title}]({link})
-**⏱️ Duration :** {duration}
-**👁 Viewer :** {results[0]['views']}
-**🤖 Uploader :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-**👤 Requested by :** {rpk}
+{title} - **{results[0]['views']}**
+⚡ **Powered By** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+Terimakasih {rpk} Telah Menggunakan [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 """
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
