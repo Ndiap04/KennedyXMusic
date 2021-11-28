@@ -2,7 +2,7 @@ import json
 import logging
 
 from KennedyMusic.config import BOT_USERNAME
-KennedyMusic.helpers.filters import command
+from KennedyMusic.helpers.filters import command
 from pyrogram import Client
 from pyrogram.types import (
     CallbackQuery,
