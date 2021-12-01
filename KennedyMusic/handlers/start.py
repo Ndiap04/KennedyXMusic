@@ -61,22 +61,19 @@ async def start_(client: Client, message: Message):
                         [ 
                 [
                     InlineKeyboardButton(
-                        "➕ Tambahkan Saya Kegrub ➕", callback_data="cbgroups")
+                        "➕ Tambahkan Saya Kegrub ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 ],[
                     InlineKeyboardButton(
-                        "🔍 Searching​​", callback_data="cbsearch"
+                        "🔍 Command", callback_data="cbsearch"
                     ),
                     InlineKeyboardButton(
                         "❤️ Untuk Kamu", callback_data="cbfavorit")
                 ],[
                     InlineKeyboardButton(
-                        "🎶 Pilih Resolusi", callback_data="cbresol"
+                        "🎶 YT Downloader", callback_data="cbresol"
                     ),
                     InlineKeyboardButton(
                         "🎉 Trending", callback_data="cbtren")
-                ],[
-                    InlineKeyboardButton(
-                        "♻ Update", callback_data="cbupdate")
                 ],[
                     InlineKeyboardButton(
                         "❔ Panduan Bot", callback_data="cbpanduan"
@@ -86,24 +83,3 @@ async def start_(client: Client, message: Message):
         ),
      disable_web_page_preview=True
     )
-
-@Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
-async def help(client: Client, message: Message):
-    await message.reply_text(
-        f"""<b>👋 **Hello** {message.from_user.mention()}</b>
-
-**Please press the button below to read the explanation and see the list of available commands !**
-
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text=" Hoe to use me ❔", url=f"https://t.me/{BOT_USERNAME}"
-                    )
-                ]
-            ]
-        )
-    )
-
-
