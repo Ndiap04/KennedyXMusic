@@ -61,22 +61,19 @@ async def cbstart(_, query: CallbackQuery):
                         [ 
                 [
                     InlineKeyboardButton(
-                        "➕ Tambahkan Saya Kegrub ➕", callback_data="cbgroups")
+                        "➕ Tambahkan Saya Kegrub ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 ],[
                     InlineKeyboardButton(
-                        "🔍 Searching​​", callback_data="cbsearch"
+                        "🔍 Command", callback_data="cbsearch"
                     ),
                     InlineKeyboardButton(
-                        "❤️ Untuk Kamu", callback_data="cbfavorit")
+                        "❤️ Trending", callback_data="cbdangdut")
                 ],[
                     InlineKeyboardButton(
-                        "🎶 Pilih Resolusi", callback_data="cbresol"
+                        "🎶 YT Downloader", callback_data="cbresol"
                     ),
                     InlineKeyboardButton(
-                        "🎉 Trending", callback_data="cbtren")
-                ],[
-                    InlineKeyboardButton(
-                        "♻ Update", callback_data="cbupdate")
+                        "🎉 Creator", callback_data="cbtren")
                 ],[
                     InlineKeyboardButton(
                         "❔ Panduan Bot", callback_data="cbpanduan"
@@ -91,61 +88,69 @@ async def cbstart(_, query: CallbackQuery):
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
-@Client.on_callback_query(filters.regex("cbgroups"))
-async def cbgroups(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""💁‍♂ **Kemungkinan Saya Belum Bisa Ditambahkan Kegrub**!
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("❌", callback_data="close")]]
-        ),
-    )
-
 @Client.on_callback_query(filters.regex("cbsearch"))
 async def cbsearch(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""🏮 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
+        f"""✘ **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
 
-/song (nama lagu) - cari berdasarkan judul lagu ✓
-/artis (nama artis) - cari berdasarkan nama artis ✓
-/video (nama lagu) - secara acak dari youtube penyanyi ✓
+  •  **Perintah** : /song (nama lagu)
+  •  **Function** : Untuk Mencari Lagu Secara Random Dari YouTube
+
+  •  **Perintah** : /artist (nama artis) 
+  •  **Function** : cari berdasarkan nama artis 
+
+  •  **Perintah** : /video (judul video) 
+  •  **Function** : Mendapatkan Video Secara acak dari youtube penyanyi 
 
 """,
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")]]
-        ),
-    )
-
-@Client.on_callback_query(filters.regex("cbfavorit"))
-async def cbfavorit(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""🎉 **Silakan Pilih Favorit Kamu** ! Saya Akan Kasih Link Youtube Nya !
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("1⃣ Dangdut", callback_data="cbdangdut"),
-                    InlineKeyboardButton("2⃣ Reggae Indonesia", callback_data="cbadvanced"),
-                ],
-                [
-                    InlineKeyboardButton("3⃣ Remix DJ local", callback_data="cbadmin"),
-                    InlineKeyboardButton("4⃣ Pop", callback_data="cbpop"),
-                ],
-                [InlineKeyboardButton("5⃣ Islami", callback_data="cbowner")],
-                [InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")],
-            ]
         ),
     )
 
 @Client.on_callback_query(filters.regex("cbdangdut"))
 async def cbdangdut(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""🎉 **Rekomendasi Untuk Kamu!**
+        f"""✘ **Hasil** :  1-4 dari 50
 
-1) **Judul** : Rembulan Malam
-Link : `(https://www.youtube.com/watch?v=oRbEEXN2xOk)`
+1)  •  **Judul** : TOP TOPAN ( Official musik video  ) Kulo pun angkat tangan
+ •  **Channel** : Safira Inema [Official]
+
+2)  •  **Judul** : Siti Badriah - Pipi Mimi (Official Music Video NAGASWARA) #music 
+ •  **Channel** : NAGASWARA Official Video | Indonesian Music Channel
+
+3)  •  **Judul** : Yasmine Alena - Mama Muda - Full Bass [OFFICIAL] 
+ •  **Channel** : BW Record Official
+
+4)  •  **Judul** : Via Vallen - Dalan Liyane ( Official ) 
+ •  **Channel** : Via Vallen Official
 """,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Kembali", callback_data="cbstart")]]
+            [
+                [
+                    InlineKeyboardButton(
+                        "🔙 Kembali",
+                        callback_data="cbstart",
+                    )
+                ],
+                [
+                    InlineKeyboardButton("1⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTM5MDY4MjM4NjIyMDYy"
+                    InlineKeyboardButton("2⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQxMDcxNzM4MDM4NTc4"),
+                ],
+                [
+                    InlineKeyboardButton(
+                        "3⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQwMDY5OTg4MzMwMzIw"
+                    ),
+                    InlineKeyboardButton(
+                        "4⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQyMDczNDg3NzQ2ODM2"
+                    ),
+                ],
+                [
+                    InlineKeyboardButton(
+                        "Lanjut ➡️", callback_data="cbstart"
+                    )
+                ],
+            ]
         ),
+        disable_web_page_preview=True,
     )
