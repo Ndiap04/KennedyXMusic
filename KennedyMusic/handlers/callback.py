@@ -129,11 +129,8 @@ async def cbdangdut(_, query: CallbackQuery):
             [
                 [
                     InlineKeyboardButton(
-                        "🔙 Kembali",
-                        callback_data="cbstart",
-                    )
-                ],
-                [
+                        "🔙 Kembali", callback_data="cbstart"),
+                ],[
                     InlineKeyboardButton("1⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTM5MDY4MjM4NjIyMDYy"
                     InlineKeyboardButton("2⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQxMDcxNzM4MDM4NTc4"),
                 ],
