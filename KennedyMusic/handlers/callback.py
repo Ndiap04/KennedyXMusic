@@ -128,26 +128,15 @@ async def cbdangdut(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "🔙 Kembali", callback_data="cbstart"),
-                ],[
-                    InlineKeyboardButton("1⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTM5MDY4MjM4NjIyMDYy"
-                    InlineKeyboardButton("2⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQxMDcxNzM4MDM4NTc4"),
+                    InlineKeyboardButton("⏸ pause", callback_data="cbpause"),
+                    InlineKeyboardButton("▶️ resume", callback_data="cbresume"),
                 ],
                 [
-                    InlineKeyboardButton(
-                        "3⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQwMDY5OTg4MzMwMzIw"
-                    ),
-                    InlineKeyboardButton(
-                        "4⃣", url=f"https://t.me/RessoPremiumRobot?start=Z2V0LTQyMDczNDg3NzQ2ODM2"
-                    ),
+                    InlineKeyboardButton("⏩ skip", callback_data="cbskip"),
+                    InlineKeyboardButton("⏹ stop", callback_data="cbend"),
                 ],
-                [
-                    InlineKeyboardButton(
-                        "Lanjut ➡️", callback_data="cbstart"
-                    )
-                ],
+                [InlineKeyboardButton("⛔ anti cmd", callback_data="cbdelcmds")],
+                [InlineKeyboardButton("🗑 Close", callback_data="close")],
             ]
         ),
-        disable_web_page_preview=True,
     )
