@@ -55,7 +55,7 @@ async def _human_time_duration(seconds):
 async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 **Saya Dapat Mengirimkan Lagu Yang Kamu Minta , Ketikan saja perintah yabg sudah tersedia saya akan mengirimkan nya!**
+💭 **Saya Dapat Mengirimkan Lagu Yang Kamu Minta , Ketikan saja perintah yang sudah tersedia saya akan mengirimkan nya!**
 """,
         reply_markup=InlineKeyboardMarkup(
                         [ 
@@ -67,13 +67,13 @@ async def start_(client: Client, message: Message):
                         "🔍 Command", callback_data="cbsearch"
                     ),
                     InlineKeyboardButton(
-                        "❤️ Trending", callback_data="cbfavorit")
+                        "❤️ Trending", callback_data="cbdangdut")
                 ],[
                     InlineKeyboardButton(
                         "🎶 YT Downloader", callback_data="cbresol"
                     ),
                     InlineKeyboardButton(
-                        "🎉 Channel", callback_data="cbtren")
+                        "🎉 Creator", callback_data="cbtren")
                 ],[
                     InlineKeyboardButton(
                         "❔ Panduan Bot", callback_data="cbpanduan"
@@ -82,4 +82,30 @@ async def start_(client: Client, message: Message):
             ]
         ),
      disable_web_page_preview=True
+    )
+
+@Client.on_message(
+    command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+)
+async def start_group(client: Client, message: Message):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
+
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "💨 Download", url=f"https://t.me/RessoMusicRobot?start=Z2V0LTQyMDczNDg3NzQ2ODM2"
+                ),
+            ]
+        ]
+    )
+
+    alive = f"**Hello {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is working normally\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, for download music on your Group voice chat** ❤"
+
+    await message.reply_photo(
+        photo=f"{ALIVE_IMG}",
+        caption=alive,
+        reply_markup=keyboard,
     )
