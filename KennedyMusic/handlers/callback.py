@@ -61,7 +61,7 @@ async def cbstart(_, query: CallbackQuery):
                         [ 
                 [
                     InlineKeyboardButton(
-                        "➕ Tambahkan Saya Kegrub ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                        "➕ Tambahkan Saya Kegrub ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
                 ],[
                     InlineKeyboardButton(
                         "🔍 Command", callback_data="cbsearch"
