@@ -55,7 +55,7 @@ async def _human_time_duration(seconds):
 async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 **Kirimkan nama artis dan/atau nama lagu dan saya akan mencarikan musik untuk kamu!**
+💭 **Saya Dapat Mengirimkan Lagu Yang Kamu Minta , Ketikan saja perintah yabg sudah tersedia saya akan mengirimkan nya!**
 """,
         reply_markup=InlineKeyboardMarkup(
                         [ 
@@ -67,13 +67,13 @@ async def start_(client: Client, message: Message):
                         "🔍 Command", callback_data="cbsearch"
                     ),
                     InlineKeyboardButton(
-                        "❤️ Untuk Kamu", callback_data="cbfavorit")
+                        "❤️ Trending", callback_data="cbfavorit")
                 ],[
                     InlineKeyboardButton(
                         "🎶 YT Downloader", callback_data="cbresol"
                     ),
                     InlineKeyboardButton(
-                        "🎉 Trending", callback_data="cbtren")
+                        "🎉 Channel", callback_data="cbtren")
                 ],[
                     InlineKeyboardButton(
                         "❔ Panduan Bot", callback_data="cbpanduan"
