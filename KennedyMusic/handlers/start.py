@@ -88,10 +88,6 @@ async def start_(client: Client, message: Message):
     command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited
 )
 async def start_group(client: Client, message: Message):
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
-
     keyboard = InlineKeyboardMarkup(
         [
             [
@@ -102,7 +98,7 @@ async def start_group(client: Client, message: Message):
         ]
     )
 
-    alive = f"**Hello {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is working normally\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, for download music on your Group voice chat** ❤"
+    alive = f"**Hello {message.from_user.mention()}!\n\n 👌Kamu hanya bisa menggunakan mengunduh lagu,\n\n⚡ Untuk bisa mengunduh video Kalian bisa Dibot langsung,atau klik tombol dibawah!"
 
     await message.reply_photo(
         photo=f"{ALIVE_IMG}",
