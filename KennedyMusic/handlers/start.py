@@ -24,7 +24,7 @@ from time import time
 from datetime import datetime
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from KennedyMusic.config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, GROUP_SUPPORT, UPSTREAM_REPO
+from KennedyMusic.config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, GROUP_SUPPORT, UPSTREAM_REPO, BOT_IMG
 from KennedyMusic.helpers.filters import command
 from KennedyMusic.helpers.decorators import sudo_users_only, authorized_users_only
 
@@ -101,7 +101,7 @@ async def start_group(client: Client, message: Message):
     alive = f"**Hello {message.from_user.mention()}!\n\n 👌Kamu hanya bisa menggunakan mengunduh lagu,\n\n⚡ Untuk bisa mengunduh video Kalian bisa Dibot langsung,atau klik tombol dibawah!"
 
     await message.reply_photo(
-        photo=f"{ALIVE_IMG}",
+        photo=f"{BOT_IMG}",
         caption=alive,
         reply_markup=keyboard,
     )
